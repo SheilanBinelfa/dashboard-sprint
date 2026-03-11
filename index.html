@@ -957,242 +957,297 @@
 
                 <!-- METRICAS PAGE -->
         <div id="metricas" class="page-content">
-            <!-- Subtabs -->
-            <div class="flex gap-2 mb-6 flex-wrap">
-                <button onclick="showMetricasTab('resumen')" id="metricas-resumen" class="metricas-tab-btn active px-6 py-3 rounded-xl text-sm font-medium transition-all">📊 Resumen</button>
-                <button onclick="showMetricasTab('planificacion')" id="metricas-planificacion" class="metricas-tab-btn px-6 py-3 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">📋 Mi Planificación</button>
-                <button onclick="showMetricasTab('ubicaciones')" id="metricas-ubicaciones" class="metricas-tab-btn px-6 py-3 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">📍 Ubicaciones</button>
-                <button onclick="showMetricasTab('nocturnidad')" id="metricas-nocturnidad" class="metricas-tab-btn px-6 py-3 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">🌙 Nocturnidad</button>
-            </div>
+            <div class="p-2">
 
-            <!-- Subtab: Resumen (tarjetas + resumen ejecutivo) -->
-            <div id="metricas-resumen-content" class="metricas-tab-content active">
-                
-                <div class="mb-6">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="text-2xl">📊</span>
-                        <h2 class="text-xl font-bold text-gray-800">Métricas de Producto</h2>
-                        <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium ml-auto">Datos reales · Clarity + Excel</span>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                        <div onclick="showMetricasTab('planificacion')" class="bg-gradient-to-br from-violet-50 to-violet-100 border-violet-200 rounded-2xl border p-6 cursor-pointer hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="text-4xl group-hover:scale-110 transition-transform">📋</span>
-                                <div>
-                                    <h3 class="font-bold text-slate-800">Mi Planificación</h3>
-                                    <p class="text-xs text-slate-600">Vista personal calendario</p>
-                                </div>
+                <!-- Header -->
+                <div class="mb-6 bg-gradient-to-r from-violet-50 to-blue-50 p-5 rounded-2xl border border-violet-200">
+                    <h3 class="font-bold text-violet-800 mb-1 flex items-center gap-2">
+                        <span class="text-xl">📊</span> Métricas de uso — Registro y Planificación
+                    </h3>
+                    <p class="text-violet-600 text-sm">Top 9 rutas más visitadas en <code class="bg-violet-100 px-1 rounded">/app/time/</code> · Diciembre 2025 – Marzo 2026</p>
+                </div>
+
+                <!-- Gráfica -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+                        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-slate-800">📈 Visitas por ruta y mes</h4>
+                                <p class="text-slate-400 text-xs mt-0.5">Eventos de página · Dic 2025 – Feb 2026 · Pendo (datos verificados)</p>
                             </div>
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-sm"><span class="text-violet-700">Sesiones (6 meses):</span><span class="font-bold text-violet-800">12,008</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-violet-700">Usuarios únicos:</span><span class="font-bold text-violet-800">10,774</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-violet-700">Tiempo medio:</span><span class="font-bold text-violet-800">3:05 min</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-violet-700">Pico actividad:</span><span class="font-bold text-violet-800">Lun 11:00h</span></div>
+                        </div>
+                        <div class="px-6 py-5">
+                            <canvas id="rutasChart" height="110"></canvas>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase">
+                                        <th class="px-5 py-3 text-left">Página</th>
+                                        <th class="px-5 py-3 text-right">Dic 2025</th>
+                                        <th class="px-5 py-3 text-right">Ene 2026</th>
+                                        <th class="px-5 py-3 text-right">Feb 2026</th>
+                                        <th class="px-5 py-3 text-right">Tendencia</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="hover:bg-slate-50 bg-violet-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Mis registros <span class="text-xs text-violet-400">· escala separada</span></td>
+                                        <td class="px-5 py-3 text-right text-slate-600">135.529</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">161.871</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">222.150</td>
+                                        <td class="px-5 py-3 text-right text-green-600 font-bold">+64% ↑</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Edic. jornada (Equipo + Compañía)</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">8.449</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">8.441</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">10.306</td>
+                                        <td class="px-5 py-3 text-right text-green-600">+22% ↑</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Incidencias</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">7.120</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">6.235</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">6.528</td>
+                                        <td class="px-5 py-3 text-right text-red-500">−8% ↓</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Registro de tramos</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">6.292</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">5.826</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">6.362</td>
+                                        <td class="px-5 py-3 text-right text-slate-400">+1% →</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Turnos</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">5.087</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">6.271</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">6.905</td>
+                                        <td class="px-5 py-3 text-right text-green-600">+36% ↑</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Horas especiales</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">4.758</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">5.181</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">5.466</td>
+                                        <td class="px-5 py-3 text-right text-green-600">+15% ↑</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 font-medium text-slate-800">Mi planificación</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">1.770</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">2.880</td>
+                                        <td class="px-5 py-3 text-right font-bold text-slate-800">4.216</td>
+                                        <td class="px-5 py-3 text-right text-green-600 font-bold">+138% ↑</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 text-xs text-slate-500 flex gap-6">
+                            <span>📌 Datos verificados directamente desde Pendo API · Mis registros no está en la gráfica por diferencia de escala (135K–222K vs 1K–10K)</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-4">
+                        <h4 class="font-semibold text-slate-800 mb-4">📖 El hilo del análisis</h4>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex gap-3 items-start">
+                                <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                                <p class="text-slate-600 text-sm">Las rutas <strong>/workingdayregisters/me</strong> y <strong>/workingdaysedition/team</strong> están entre las más visitadas de toda la plataforma — <strong>222K y 10.306 visitas en febrero</strong> según Pendo.</p>
                             </div>
-                            <div class="mt-4 text-center"><span class="text-xs px-3 py-1 rounded-full bg-violet-200 text-violet-700 font-medium">Patrones L-V perfectos</span></div>
-                        </div>
-
-                        <div onclick="showMetricasTab('ubicaciones')" class="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 rounded-2xl border p-6 cursor-pointer hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="text-4xl group-hover:scale-110 transition-transform">📍</span>
-                                <div>
-                                    <h3 class="font-bold text-slate-800">Ubicaciones</h3>
-                                    <p class="text-xs text-slate-600">Registro GPS automático</p>
-                                </div>
+                            <div class="flex gap-3 items-start">
+                                <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                                <p class="text-slate-600 text-sm">Clarity revela que en "Mis registros" hay <strong>98.251 dead clicks en elementos vacíos</strong>, rage clicks en campos de hora y errores de formulario — señal clara de fricción en el registro.</p>
                             </div>
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-sm"><span class="text-blue-700">Gestión activada:</span><span class="font-bold text-blue-800">186 clientes (59.6%)</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-blue-700">Tramos registrados:</span><span class="font-bold text-blue-800">1.12M</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-blue-700">Usuarios activos:</span><span class="font-bold text-blue-800">14.2K</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-blue-700">Dominio móvil:</span><span class="font-bold text-blue-800">98.4%</span></div>
+                            <div class="flex gap-3 items-start">
+                                <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                                <p class="text-slate-600 text-sm">Pendo detecta <strong>16.433 dead clicks en las filas de jornada</strong> (GLI - Seleccionar jornada · clase <code>register-day-week-container</code>) con 278 rage clicks — los usuarios hacen click en cualquier parte de la fila del día esperando que se abra o cambie algo, pero solo una zona pequeña responde. Confirmado inspeccionando el tagueo en Pendo.</p>
                             </div>
-                            <div class="mt-4 text-center"><span class="text-xs px-3 py-1 rounded-full bg-blue-200 text-blue-700 font-medium">Súper-registro 92x</span></div>
-                        </div>
-
-                        <div onclick="showMetricasTab('nocturnidad')" class="bg-gradient-to-br from-indigo-50 to-indigo-100 border-indigo-200 rounded-2xl border p-6 cursor-pointer hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="text-4xl group-hover:scale-110 transition-transform">🌙</span>
-                                <div>
-                                    <h3 class="font-bold text-slate-800">Nocturnidad</h3>
-                                    <p class="text-xs text-slate-600">Gestión salto de día</p>
-                                </div>
+                            <div class="flex gap-3 items-start">
+                                <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">→</span>
+                                <p class="text-slate-600 text-sm"><strong>Conclusión:</strong> El empleado intenta registrar, no consigue seleccionar bien la jornada, y acaba solicitando una edición. El manager la aprueba — generando el alto volumen observado en ambas rutas.</p>
                             </div>
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-sm"><span class="text-indigo-700">Clientes activos:</span><span class="font-bold text-indigo-800">13 de 312 (4.2%)</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-indigo-700">Tramos registrados:</span><span class="font-bold text-indigo-800">266K</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-indigo-700">Ediciones jornada:</span><span class="font-bold text-indigo-800">3.3K</span></div>
-                                <div class="flex justify-between text-sm"><span class="text-indigo-700">Líder absoluto:</span><span class="font-bold text-indigo-800">CLARIANE</span></div>
-                            </div>
-                            <div class="mt-4 text-center"><span class="text-xs px-3 py-1 rounded-full bg-indigo-200 text-indigo-700 font-medium">Sector sanitario 24h</span></div>
                         </div>
                     </div>
 
-                    
-                </div>
-            </div>
+                    <!-- KPIs Pendo -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
+                            <p class="text-3xl font-bold text-red-500">16.433</p>
+                            <p class="text-slate-600 text-sm font-medium mt-1">Dead clicks</p>
+                            <p class="text-slate-400 text-xs mt-0.5">Selector de jornada</p>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
+                            <p class="text-3xl font-bold text-orange-500">278</p>
+                            <p class="text-slate-600 text-sm font-medium mt-1">Rage clicks</p>
+                            <p class="text-slate-400 text-xs mt-0.5">Selector de jornada</p>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
+                            <p class="text-3xl font-bold text-blue-500">14.758</p>
+                            <p class="text-slate-600 text-sm font-medium mt-1">Solicitudes edición</p>
+                            <p class="text-slate-400 text-xs mt-0.5">Desde Mis registros</p>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
+                            <p class="text-3xl font-bold text-violet-500">3.933</p>
+                            <p class="text-slate-600 text-sm font-medium mt-1">Usuarios únicos</p>
+                            <p class="text-slate-400 text-xs mt-0.5">Solicitaron edición</p>
+                        </div>
+                    </div>
 
-            <div class="text-center py-6">
-                <p class="text-gray-500 text-sm">🚀 Sprint en marcha · Explora las métricas de producto en pestañas superiores</p>
-                <p class="text-gray-400 text-xs mt-1">Dashboard preparado para demo stakeholders</p>
-            </div>
-        
-</div>
+                    <!-- Tabla combinada -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
+                        <div class="px-6 py-4 border-b border-slate-100">
+                            <h4 class="font-semibold text-slate-800">📊 Top 10 cuentas — Solicitudes de edición de jornada</h4>
+                            <p class="text-slate-400 text-xs mt-0.5">Enero + Febrero 2026 · Pendo · Desde "Mis registros"</p>
+                            <p class="text-slate-400 text-xs mt-1">💡 <em>Ediciones/persona</em> = cuántas veces solicitó edición cada empleado de media. Un valor alto puede indicar fricción al fichar o jornadas mal configuradas.</p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase">
+                                        <th class="px-5 py-3 text-left">#</th>
+                                        <th class="px-5 py-3 text-left">Cliente</th>
+                                        <th class="px-5 py-3 text-right">Solicitudes</th>
+                                        <th class="px-5 py-3 text-right">Empleados únicos</th>
+                                        <th class="px-5 py-3 text-right">Ediciones/persona</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="hover:bg-slate-50 bg-blue-50">
+                                        <td class="px-5 py-3 text-slate-400">1</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">IFEMA <span class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1">⭐ Nuevo ene. 2026</span></td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">1.627</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">388</td>
+                                        <td class="px-5 py-3 text-right font-bold text-blue-600">4.2</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">2</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">MACCRESIDENCIAL</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">1.569</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">123</td>
+                                        <td class="px-5 py-3 text-right font-bold text-red-500">12.8</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">3</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">GRUPORETABET</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">1.405</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">268</td>
+                                        <td class="px-5 py-3 text-right font-bold text-orange-500">5.2</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">4</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">CEF</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">1.263</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">262</td>
+                                        <td class="px-5 py-3 text-right font-bold text-orange-500">4.8</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">5</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">GROUPESEB</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">1.080</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">183</td>
+                                        <td class="px-5 py-3 text-right font-bold text-orange-500">5.9</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 bg-amber-50">
+                                        <td class="px-5 py-3 text-slate-400">6</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">CEPA <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full ml-1">⚠️ Alta frecuencia</span></td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">957</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">17</td>
+                                        <td class="px-5 py-3 text-right font-bold text-red-600">56.3</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">7</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">CALAIXDECULTURA</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">793</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">171</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">4.6</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">8</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">DEUDAFIX</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">766</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">187</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">4.1</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">9</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">MATACHANA</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">748</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">162</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">4.6</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-5 py-3 text-slate-400">10</td>
+                                        <td class="px-5 py-3 font-medium text-slate-800">APERITIVOSLAREAL</td>
+                                        <td class="px-5 py-3 text-right font-bold text-violet-700">557</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">114</td>
+                                        <td class="px-5 py-3 text-right text-slate-600">4.9</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="px-6 py-3 bg-amber-50 border-t border-amber-100 text-xs text-amber-700 flex gap-6">
+                            <span>⭐ IFEMA — nuevo cliente, 1.627 solicitudes en su primer mes completo de uso real</span>
+                            <span>⚠️ CEPA — solo 17 empleados pero 957 solicitudes · 56 por persona</span>
+                        </div>
+                    </div>
 
-            <!-- Subtab: Mi Planificación (contenido completo de la página planificacion) -->
-            <div id="metricas-planificacion-content" class="metricas-tab-content">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="text-3xl">📋</span>
-                    <div><h2 class="text-xl font-bold text-gray-800">Mi Planificación</h2><p class="text-gray-500 text-sm">Vista personal calendario · Sep 2025 - Feb 2026</p></div>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium ml-auto">Datos Clarity</span>
-                </div>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center"><span class="text-violet-600 text-xl">📊</span></div><div><p class="text-slate-600 text-sm font-medium">Sesiones totales</p><p class="text-slate-400 text-xs">6 meses completos</p></div></div><p class="text-3xl font-bold text-slate-800">12,008</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center"><span class="text-blue-600 text-xl">👥</span></div><div><p class="text-slate-600 text-sm font-medium">Usuarios únicos</p><p class="text-slate-400 text-xs">Alta fidelidad</p></div></div><p class="text-3xl font-bold text-slate-800">10,774</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center"><span class="text-emerald-600 text-xl">⏱️</span></div><div><p class="text-slate-600 text-sm font-medium">Tiempo medio</p><p class="text-slate-400 text-xs">Por sesión</p></div></div><p class="text-3xl font-bold text-slate-800">3:05</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center"><span class="text-orange-600 text-xl">📅</span></div><div><p class="text-slate-600 text-sm font-medium">Pico actividad</p><p class="text-slate-400 text-xs">Lunes 11:00h</p></div></div><p class="text-3xl font-bold text-slate-800">1,110</p></div>
-                </div>
-                <div class="grid lg:grid-cols-3 gap-6 mb-6">
-                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">📈 Evolución sesiones (6 meses)</h3>
-                        <canvas id="planificacionEvolucionChart2" width="400" height="250"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">📊 Resumen período</h3>
-                        <div class="space-y-4">
-                            <div class="p-4 bg-violet-50 rounded-xl"><p class="font-semibold text-violet-800 text-sm">Promedio mensual</p><p class="text-2xl font-bold text-violet-600 mt-1">2,001</p></div>
-                            <div class="p-4 bg-blue-50 rounded-xl"><p class="font-semibold text-blue-800 text-sm">Usuarios leales</p><p class="text-2xl font-bold text-blue-600 mt-1">89.7%</p></div>
-                            <div class="p-4 bg-emerald-50 rounded-xl"><p class="font-semibold text-emerald-800 text-sm">Tiempo óptimo</p><p class="text-2xl font-bold text-emerald-600 mt-1">3:05</p></div>
+                    <!-- Siguientes acciones -->
+                    <div class="grid lg:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                            <span class="text-3xl mb-4 block">📋</span>
+                            <p class="font-bold text-slate-900 text-base mb-2">Encuesta Pendo</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Lanzar tooltip tras solicitar edición de jornada: <em>"¿Por qué has necesitado editar tu jornada?"</em> — opciones: me equivoqué, olvidé fichar, error del sistema, horario irregular.</p>
+                            <span class="mt-3 inline-block text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">🟢 Bajo esfuerzo</span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                            <span class="text-3xl mb-4 block">🗺️</span>
+                            <p class="font-bold text-slate-900 text-base mb-2">Revisar heatmap Clarity</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Revisar click map y rage clicks en <code class="bg-slate-100 px-1 rounded">/workingdayregisters/me</code> — especialmente las filas de jornada (<code class="bg-slate-100 px-1 rounded">register-day-week-container</code>) con 16K dead clicks para confirmar qué zona exacta no responde al click.</p>
+                            <span class="mt-3 inline-block text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">🟢 Bajo esfuerzo</span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                            <span class="text-3xl mb-4 block">🎤</span>
+                            <p class="font-bold text-slate-900 text-base mb-2">Entrevistar IFEMA</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Con 1.627 solicitudes (enero+febrero) y 388 usuarios únicos, IFEMA es el candidato ideal. 30 min con un manager y un empleado para entender el patrón real de uso.</p>
+                            <span class="mt-3 inline-block text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">🔴 Tras obtener datos</span>
                         </div>
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">📅 Distribución por días</h3>
-                        <canvas id="planificacionDiasChart2" width="400" height="280"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">🕐 Top horas del día</h3>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg"><span class="font-semibold text-blue-800">11:00</span><span class="font-bold text-blue-600">1,110</span></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span class="font-semibold">09:00</span><span class="font-bold">1,062</span></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span class="font-semibold">10:00</span><span class="font-bold">1,024</span></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span class="font-semibold">08:00</span><span class="font-bold">1,019</span></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span class="font-semibold">12:00</span><span class="font-bold">965</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-r from-violet-50 to-blue-50 p-6 rounded-2xl border border-slate-200">
-                    <h3 class="font-bold text-slate-800 mb-3">💡 Insights clave</h3>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="p-4 bg-emerald-50 rounded-lg"><p class="font-semibold text-emerald-800 text-sm">🎯 Usuarios muy focalizados</p><p class="text-emerald-700 text-xs mt-1">3 minutos exactos por sesión = eficiencia y propósito claro</p></div>
-                        <div class="p-4 bg-blue-50 rounded-lg"><p class="font-semibold text-blue-800 text-sm">📅 Patrones predecibles</p><p class="text-blue-700 text-xs mt-1">L-V, 8-12h permite optimizaciones de rendimiento</p></div>
-                        <div class="p-4 bg-violet-50 rounded-lg"><p class="font-semibold text-violet-800 text-sm">👥 Alta fidelidad</p><p class="text-violet-700 text-xs mt-1">89.7% usuarios leales, funcionalidad esencial</p></div>
-                        <div class="p-4 bg-orange-50 rounded-lg"><p class="font-semibold text-orange-800 text-sm">🕐 Horario laboral puro</p><p class="text-orange-700 text-xs mt-1">Casi 0 uso fuera horario = herramienta profesional</p></div>
-                    </div>
-                </div>
-                <p class="text-center text-xs text-slate-400 mt-6">Fuente: Microsoft Clarity · Sep 2025 - Feb 2026</p>
-            </div>
 
-            <!-- Subtab: Ubicaciones -->
-            <div id="metricas-ubicaciones-content" class="metricas-tab-content">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="text-3xl">📍</span>
-                    <div><h2 class="text-xl font-bold text-gray-800">Ubicaciones</h2><p class="text-gray-500 text-sm">Registro en ubicación · 312 clientes analizados</p></div>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium ml-auto">Datos producción</span>
-                </div>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Gestión activada</p><p class="text-3xl font-bold text-slate-800 mt-2">186</p><p class="text-slate-500 text-sm">de 312 (59.6%)</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Tramos móvil</p><p class="text-3xl font-bold text-slate-800 mt-2">1.12M</p><p class="text-slate-500 text-sm">98.4% total</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Usuarios activos</p><p class="text-3xl font-bold text-slate-800 mt-2">14.2K</p><p class="text-slate-500 text-sm">Alta adopción</p></div>
-
-                </div>
-                <div class="grid lg:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">🎯 Gestión activada vs desactivada</h3>
-                        <canvas id="ubicacionesAdopcionChartM" width="300" height="200"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <div class="space-y-4">
-                            <div class="p-4 bg-emerald-50 rounded-xl"><p class="font-semibold text-emerald-800 text-sm">194 activados (77.9%)</p></div>
-                            <div class="p-4 bg-slate-50 rounded-xl"><p class="font-semibold text-slate-800 text-sm">55 sin activar (22.1%)</p></div>
-                            <div class="p-4 bg-amber-50 rounded-xl"><p class="font-semibold text-amber-800 text-sm">Solo 11 configuran ubicaciones</p></div>
-                            <div class="p-4 bg-blue-50 rounded-xl"><p class="font-semibold text-blue-800 text-sm">1.12M registros con ubicación</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid lg:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">📱 Tramos por dispositivo</h3>
-                        <canvas id="ubicacionesDispositivosChartM" width="400" height="280"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">🏆 Top tramos registrados</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-xl"><p class="font-semibold text-blue-800 text-sm">CLARIANE</p><p class="font-bold text-blue-600">141,223</p></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl"><p class="font-semibold text-slate-800 text-sm">DELCOM</p><p class="font-bold text-slate-600">104,984</p></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl"><p class="font-semibold text-slate-800 text-sm">ALZA</p><p class="font-bold text-slate-600">93,023</p></div>
-                            <div class="flex justify-between items-center p-3 bg-amber-50 rounded-xl"><p class="font-semibold text-amber-800 text-sm">EUROFRAGANCE</p><p class="font-bold text-amber-600">42,971</p></div>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center text-xs text-slate-400 mt-6">Fuente: Datos producción · 312 clientes · Móvil GPS automático</p>
-            </div>
-
-            <!-- Subtab: Nocturnidad -->
-            <div id="metricas-nocturnidad-content" class="metricas-tab-content">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="text-3xl">🌙</span>
-                    <div><h2 class="text-xl font-bold text-gray-800">Nocturnidad</h2><p class="text-gray-500 text-sm">Gestión salto de día · 312 clientes analizados</p></div>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium ml-auto">Datos producción</span>
-                </div>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Clientes activos</p><p class="text-3xl font-bold text-slate-800 mt-2">13</p><p class="text-slate-500 text-sm">de 312 (4.2%)</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Tramos registrados</p><p class="text-3xl font-bold text-slate-800 mt-2">266.2K</p><p class="text-slate-500 text-sm">1.1K promedio</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Ediciones jornada</p><p class="text-3xl font-bold text-slate-800 mt-2">3.26K</p><p class="text-slate-500 text-sm">1.2% ratio</p></div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200"><p class="text-slate-600 text-sm font-medium">Horas especiales</p><p class="text-3xl font-bold text-slate-800 mt-2">1.39K</p><p class="text-slate-500 text-sm">0.5% ratio</p></div>
-                </div>
-                <div class="grid lg:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">👥 Adopción gestión nocturna</h3>
-                        <canvas id="nocturnidadClientesChartM" width="300" height="200"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <div class="space-y-4">
-                            <div class="p-4 bg-emerald-50 rounded-xl"><p class="font-semibold text-emerald-800 text-sm">13 clientes pioneros</p><p class="text-emerald-700 text-xs mt-1">Han activado gestión nocturna</p></div>
-                            <div class="p-4 bg-slate-50 rounded-xl"><p class="font-semibold text-slate-800 text-sm">299 sin activar</p><p class="text-slate-600 text-xs mt-1">95.8% oportunidad</p></div>
-                            <div class="p-4 bg-blue-50 rounded-xl"><p class="font-semibold text-blue-800 text-sm">Líder: CLARIANE</p><p class="text-blue-700 text-xs mt-1">105,933 tramos · Sector sanitario 24h</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">📊 Registrados vs Planificados</h3>
-                        <canvas id="nocturnidadVolumenesChartM" width="400" height="280"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <h3 class="font-semibold text-slate-800 mb-4">🏆 Top tramos nocturnos</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-xl"><p class="font-semibold text-blue-800 text-sm">CLARIANE</p><p class="font-bold text-blue-600">105,933</p></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl"><p class="font-semibold text-sm">TECNYCONTA</p><p class="font-bold">26,140</p></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl"><p class="font-semibold text-sm">PLASTIPAK</p><p class="font-bold">11,450</p></div>
-                            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl"><p class="font-semibold text-sm">SIMONCOLL</p><p class="font-bold">9,552</p></div>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center text-xs text-slate-400 mt-6">Fuente: Datos producción · 312 clientes analizados</p>
             </div>
         </div>
-</div>
 
-
-    <script>
-        const charts = {};
-        const colors = {
-            blue: '#3B82F6', green: '#10B981', amber: '#F59E0B',
-            purple: '#8B5CF6', rose: '#F43F5E', slate: '#64748B',
-            red: '#EF4444', emerald: '#10B981', orange: '#F97316'
-        };
+        <script>
+        // Chart rutas
+        window.createRutasChart = function() {
+            if (window.rutasChartCreated) return;
+            window.rutasChartCreated = true;
+            const ctx = document.getElementById('rutasChart');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Dic 2025', 'Ene 2026', 'Feb 2026'],
+                    datasets: [
+                        { label: 'Edic. jornada', data: [8449, 8441, 10306], backgroundColor: 'rgba(99,102,241,0.8)', borderRadius: 4 },
+                        { label: 'Incidencias', data: [7120, 6235, 6528], backgroundColor: 'rgba(239,68,68,0.7)', borderRadius: 4 },
+                        { label: 'Registro tramos', data: [6292, 5826, 6362], backgroundColor: 'rgba(59,130,246,0.7)', borderRadius: 4 },
+                        { label: 'Turnos', data: [5087, 6271, 6905], backgroundColor: 'rgba(16,185,129,0.7)', borderRadius: 4 },
+                        { label: 'Horas especiales', data: [4758, 5181, 5466], backgroundColor: 'rgba(245,158,11,0.7)', borderRadius: 4 },
+                        { label: 'Mi planificación', data: [1770, 2880, 4216], backgroundColor: 'rgba(168,85,247,0.7)', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 11 }, boxWidth: 12 } },
+                        tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toLocaleString('es-ES') } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0)+'K' : v } }
+                    }
+                }
+            });
+        }
 
         // ✅ FIX: función de fallback para imágenes rotas (sin HTML inline en onerror)
         function handleImgError(img, fallbackId) {
@@ -1206,15 +1261,11 @@
             var target = document.getElementById(page);
             if (target) target.classList.add('active');
             
-            // Si vamos a métricas, activar el resumen por defecto
+            // Si vamos a métricas, inicializar gráfica
             if (page === 'metricas') {
-                document.querySelectorAll('.metricas-tab-content').forEach(c => c.classList.remove('active'));
-                var resumen = document.getElementById('metricas-resumen-content');
-                if (resumen) resumen.classList.add('active');
-                document.querySelectorAll('.metricas-tab-btn').forEach(b => {
-                    b.classList.remove('active');
-                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-                });
+                setTimeout(function() {
+                    if (typeof createRutasChart === 'function') createRutasChart();
+                }, 50);
                 var resBtn = document.getElementById('metricas-resumen');
                 if (resBtn) {
                     resBtn.classList.add('active');
