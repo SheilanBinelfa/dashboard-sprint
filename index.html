@@ -1051,19 +1051,19 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex gap-3 items-start">
                                 <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                                <p class="text-slate-600 text-sm">Las rutas <strong>/workingdayregisters/me</strong> y <strong>/workingdaysedition/team</strong> están entre las más visitadas de toda la plataforma — <strong>222K y 10.306 visitas en febrero</strong> según Pendo.</p>
+                                <p class="text-slate-600 text-sm"><strong>Mis registros es la página más visitada</strong> — 222K eventos en febrero. Alta frecuencia de uso diario.</p>
                             </div>
                             <div class="flex gap-3 items-start">
                                 <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                                <p class="text-slate-600 text-sm">Clarity revela que en "Mis registros" hay <strong>98.251 dead clicks en elementos vacíos</strong>, rage clicks en campos de hora y errores de formulario — señal clara de fricción en el registro.</p>
+                                <p class="text-slate-600 text-sm"><strong>Clarity detecta 98K dead clicks</strong> en esa página — los usuarios tocan zonas que no responden.</p>
                             </div>
                             <div class="flex gap-3 items-start">
                                 <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
-                                <p class="text-slate-600 text-sm">Pendo detecta <strong>16.433 dead clicks en las filas de jornada</strong> (GLI - Seleccionar jornada · clase <code>register-day-week-container</code>) con 278 rage clicks — los usuarios hacen click en cualquier parte de la fila del día esperando que se abra o cambie algo, pero solo una zona pequeña responde. Confirmado inspeccionando el tagueo en Pendo.</p>
+                                <p class="text-slate-600 text-sm"><strong>Pendo concreta el foco:</strong> 16.433 dead clicks en las filas de jornada — el usuario clica en la fila esperando seleccionarla, pero no toda el área responde.</p>
                             </div>
                             <div class="flex gap-3 items-start">
                                 <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">→</span>
-                                <p class="text-slate-600 text-sm"><strong>Conclusión:</strong> El empleado intenta registrar, no consigue seleccionar bien la jornada, y acaba solicitando una edición. El manager la aprueba — generando el alto volumen observado en ambas rutas.</p>
+                                <p class="text-slate-600 text-sm"><strong>Resultado:</strong> el empleado no consigue registrar bien y solicita una edición. El manager aprueba — así se genera el alto volumen en ambas rutas.</p>
                             </div>
                         </div>
                     </div>
@@ -1093,6 +1093,37 @@
                     </div>
 
                     <!-- Tabla combinada -->
+                    <!-- Distribución por día de la semana -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
+                        <div class="px-6 py-4 border-b border-slate-100">
+                            <h4 class="font-semibold text-slate-800">📅 ¿Cuándo se solicitan las ediciones? — Por día de la semana</h4>
+                            <p class="text-slate-400 text-xs mt-0.5">Media de solicitudes por día · Febrero 2026 · Pendo</p>
+                        </div>
+                        <div class="px-6 py-5">
+                            <canvas id="diasChart" height="80"></canvas>
+                        </div>
+                        <div class="px-6 pb-5 grid grid-cols-3 gap-3">
+                            <div class="bg-slate-50 rounded-xl p-4 text-center">
+                                <p class="text-2xl font-bold text-slate-800">Lun–Jue</p>
+                                <p class="text-slate-500 text-sm mt-1">~733 solicitudes/día</p>
+                                <p class="text-slate-400 text-xs">Flujo habitual de trabajo</p>
+                            </div>
+                            <div class="bg-amber-50 rounded-xl p-4 text-center">
+                                <p class="text-2xl font-bold text-amber-600">Domingo</p>
+                                <p class="text-amber-600 text-sm font-bold mt-1">615 solicitudes/día</p>
+                                <p class="text-slate-400 text-xs">Empleados revisando la semana anterior</p>
+                            </div>
+                            <div class="bg-green-50 rounded-xl p-4 text-center">
+                                <p class="text-2xl font-bold text-green-600">Viernes</p>
+                                <p class="text-green-600 text-sm font-bold mt-1">Solo 69/día</p>
+                                <p class="text-slate-400 text-xs">Los errores del viernes se corrigen después</p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-amber-50 border-t border-amber-100 text-xs text-amber-700">
+                            💡 <strong>Conclusión clave:</strong> el problema no es en tiempo real — los empleados se dan cuenta del error días después. El domingo es el 3er día con más solicitudes, lo que apunta a correcciones diferidas del fin de semana o de la semana anterior.
+                        </div>
+                    </div>
+
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
                         <div class="px-6 py-4 border-b border-slate-100">
                             <h4 class="font-semibold text-slate-800">📊 Top 10 cuentas — Solicitudes de edición de jornada</h4>
@@ -1184,9 +1215,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="px-6 py-3 bg-amber-50 border-t border-amber-100 text-xs text-amber-700 flex gap-6">
+                        <div class="px-6 py-3 bg-amber-50 border-t border-amber-100 text-xs text-amber-700 flex flex-col gap-1">
                             <span>⭐ IFEMA — nuevo cliente, 1.627 solicitudes en su primer mes completo de uso real</span>
                             <span>⚠️ CEPA — solo 17 empleados pero 957 solicitudes · 56 por persona</span>
+                            <span>📌 <strong>Modalidad de registro:</strong> todos estos clientes tienen modalidad <strong>Real</strong> — solo pueden registrar entrada y salida. Para corregir errores <strong>necesitan obligatoriamente solicitar edición</strong>, no pueden editarlo directamente.</span>
                         </div>
                     </div>
 
@@ -1206,8 +1238,8 @@
                         </div>
                         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                             <span class="text-3xl mb-4 block">🎤</span>
-                            <p class="font-bold text-slate-900 text-base mb-2">Entrevistar IFEMA</p>
-                            <p class="text-slate-500 text-sm leading-relaxed">Con 1.627 solicitudes (enero+febrero) y 388 usuarios únicos, IFEMA es el candidato ideal. 30 min con un manager y un empleado para entender el patrón real de uso.</p>
+                            <p class="font-bold text-slate-900 text-base mb-2">Entrevistar un cliente clave</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Seleccionar un cliente del top 10 con alto volumen de solicitudes. 30 min con un manager y un empleado para entender el patrón real de uso y los motivos detrás de las ediciones.</p>
                             <span class="mt-3 inline-block text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">🔴 Tras obtener datos</span>
                         </div>
                     </div>
@@ -1218,6 +1250,38 @@
 
         <script>
         // Chart rutas
+        window.createDiasChart = function() {
+            if (window.diasChartCreated) return;
+            window.diasChartCreated = true;
+            const ctx = document.getElementById('diasChart');
+            if (!ctx) return;
+            const vals = [740, 744, 756, 692, 69, 65, 615];
+            const colors = vals.map(v => v > 500 ? 'rgba(99,102,241,0.8)' : v < 100 ? 'rgba(16,185,129,0.7)' : 'rgba(245,158,11,0.8)');
+            colors[6] = 'rgba(245,158,11,0.85)'; // domingo destacado
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
+                    datasets: [{
+                        label: 'Media solicitudes edición',
+                        data: vals,
+                        backgroundColor: colors,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: c => 'Media: ' + c.parsed.y + ' solicitudes' } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: v => v } }
+                    }
+                }
+            });
+        }
+        
         window.createRutasChart = function() {
             if (window.rutasChartCreated) return;
             window.rutasChartCreated = true;
@@ -1265,6 +1329,7 @@
             if (page === 'metricas') {
                 setTimeout(function() {
                     if (typeof createRutasChart === 'function') createRutasChart();
+                    setTimeout(createDiasChart, 150);
                 }, 50);
                 var resBtn = document.getElementById('metricas-resumen');
                 if (resBtn) {
