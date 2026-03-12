@@ -159,7 +159,7 @@
                         <p class="text-slate-400 text-xs mt-0.5">Done ✅</p>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
-                        <p class="text-3xl font-bold text-yellow-500">3</p>
+                        <p class="text-3xl font-bold text-yellow-500">4</p>
                         <p class="text-slate-600 text-sm font-medium mt-1">En curso</p>
                         <p class="text-slate-400 text-xs mt-0.5">In Progress ⚡</p>
                     </div>
@@ -382,24 +382,17 @@
                         <p class="text-slate-600 text-sm font-medium mt-1">En desarrollo</p>
                         <p class="text-slate-400 text-xs mt-0.5">Activos en este momento</p>
                     </div>
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center">
-                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <span class="text-2xl">⏳</span>
-                        </div>
-                        <p class="text-3xl font-bold text-slate-500">1</p>
-                        <p class="text-slate-600 text-sm font-medium mt-1">Sin iniciar</p>
-                        <p class="text-slate-400 text-xs mt-0.5">Compensaciones especiales</p>
-                    </div>
+
                 </div>
 
                 <!-- BARRA PROGRESO GLOBAL -->
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-2">
                     <div class="flex items-center justify-between mb-3">
                         <p class="font-semibold text-slate-800">📈 Progreso de desarrollo del sprint</p>
-                        <span class="text-2xl font-bold text-emerald-600">80%</span>
+                        <span class="text-2xl font-bold text-emerald-600">85%</span>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-4 mb-3">
-                        <div class="h-4 rounded-full bg-gradient-to-r from-emerald-400 to-blue-400" style="width: 80%"></div>
+                        <div class="h-4 rounded-full bg-gradient-to-r from-emerald-400 to-blue-400" style="width: 85%"></div>
                     </div>
                     <div class="flex gap-4 text-xs text-slate-500">
                         <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span> Completado / QA</span>
@@ -612,7 +605,7 @@
                                 <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50">
                                     <span class="w-2 h-2 rounded-full bg-slate-300 flex-shrink-0"></span>
                                     <span class="text-slate-700">Compensaciones especiales - Validación %</span>
-                                    <span class="ml-auto text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Sin iniciar</span>
+                                    <span class="ml-auto text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">En curso</span>
                                 </div>
                                 <div class="flex items-center gap-2 p-2 rounded-lg bg-emerald-50">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
@@ -974,6 +967,9 @@
                 <button id="mtab-saldo" onclick="showMetricasTab('saldo')" class="metricas-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 border border-slate-200">
                     🆕 Saldo de horas
                 </button>
+                <button id="mtab-politicas" onclick="showMetricasTab('politicas')" class="metricas-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 border border-slate-200">
+                    ⚙️ Restricciones en políticas
+                </button>
             </div>
         </div>
 
@@ -1311,6 +1307,147 @@
 
         </div>
 
+
+        <!-- ═══════════════════════════════════════════════════════
+             SUBTAB 4: RESTRICCIONES EN POLÍTICAS
+        ═══════════════════════════════════════════════════════ -->
+        <div id="metricas-politicas-content" class="metricas-tab-content">
+
+            <!-- Intro -->
+            <div class="mb-4 bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                <p class="text-sm text-slate-700 leading-relaxed">El <strong>17 de febrero</strong> se lanzaron nuevas opciones en las políticas de registro horario. Los datos muestran el estado de adopción actual sobre los <strong>237 clientes</strong> con políticas activas (510 políticas en total).</p>
+            </div>
+
+            <!-- 3 KPIs -->
+            <div class="grid grid-cols-3 gap-3 mb-5">
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-slate-700">237</p>
+                    <p class="text-xs text-slate-500 mt-1">Clientes con políticas activas</p>
+                </div>
+                <div class="bg-violet-50 border border-violet-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-violet-700">27</p>
+                    <p class="text-xs text-violet-600 mt-1">Han activado alguna opción nueva</p>
+                    <p class="text-xs text-slate-400 mt-0.5">11,4% del total</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-emerald-600">80</p>
+                    <p class="text-xs text-emerald-600 mt-1">Total políticas con opciones nuevas</p>
+                </div>
+            </div>
+
+            <!-- 4 bloques en grid 2x2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+
+                <!-- Check redondear -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-4 py-3 bg-blue-50 border-b border-blue-100">
+                        <p class="font-semibold text-blue-800 text-sm">Ajuste de cómputo — Redondear total a la baja</p>
+                        <p class="text-xs text-blue-500 mt-0.5">Contabilizar todo lo registrado + check redondear por medias horas</p>
+                    </div>
+                    <div class="p-4 flex gap-6">
+                        <div class="text-center shrink-0">
+                            <p class="text-3xl font-bold text-blue-700">7</p>
+                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
+                            <p class="text-xl font-semibold text-blue-500 mt-1">13</p>
+                            <p class="text-xs text-slate-400">políticas</p>
+                        </div>
+                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
+                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">IFEMA</span><span class="text-slate-400">2 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">CODISOIL</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">COFERDROZA</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">FPASQUALMARAGALL</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOIMESE</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">TECNYCONTA</span><span class="text-slate-400">1 pol</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solo planificado -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-4 py-3 bg-amber-50 border-b border-amber-100">
+                        <p class="font-semibold text-amber-800 text-sm">Ajuste de cómputo — Solo lo planificado en caso de exceso</p>
+                        <p class="text-xs text-amber-500 mt-0.5">No contabiliza tiempo registrado por encima de lo planificado</p>
+                    </div>
+                    <div class="p-4 flex gap-6">
+                        <div class="text-center shrink-0">
+                            <p class="text-3xl font-bold text-amber-600">21</p>
+                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
+                            <p class="text-xl font-semibold text-amber-400 mt-1">41</p>
+                            <p class="text-xs text-slate-400">políticas</p>
+                        </div>
+                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
+                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">COFERDROZA</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">CONCENTROL</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">ELECTRONICAY...</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPORETABET</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">PROFER</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs text-slate-400 italic"><span>+ 15 clientes más</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deducción tiempo planificado -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-4 py-3 bg-emerald-50 border-b border-emerald-100">
+                        <p class="font-semibold text-emerald-800 text-sm">Deducción automática — Tiempo planificado del tramo</p>
+                        <p class="text-xs text-emerald-500 mt-0.5">Deduce el tiempo planificado si el tramo obligatorio no se registra</p>
+                    </div>
+                    <div class="p-4 flex gap-6">
+                        <div class="text-center shrink-0">
+                            <p class="text-3xl font-bold text-emerald-600">6</p>
+                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
+                            <p class="text-xl font-semibold text-emerald-400 mt-1">11</p>
+                            <p class="text-xs text-slate-400">políticas</p>
+                        </div>
+                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
+                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">ALZA</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GOBRAVOES</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOIMESE</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPORETABET</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">SENATOR</span><span class="text-slate-400">1 pol</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deducción mínimo obligatorio -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-4 py-3 bg-rose-50 border-b border-rose-100">
+                        <p class="font-semibold text-rose-800 text-sm">Deducción automática — Tiempo mínimo obligatorio</p>
+                        <p class="text-xs text-rose-500 mt-0.5">Deduce solo el mínimo obligatorio si el tramo no se registra</p>
+                    </div>
+                    <div class="p-4 flex gap-6">
+                        <div class="text-center shrink-0">
+                            <p class="text-3xl font-bold text-rose-600">8</p>
+                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
+                            <p class="text-xl font-semibold text-rose-400 mt-1">15</p>
+                            <p class="text-xs text-slate-400">políticas</p>
+                        </div>
+                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
+                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">VOLTAMPER</span><span class="text-slate-400">4 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">IFEMA</span><span class="text-slate-400">3 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">CONCENTROL</span><span class="text-slate-400">2 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOGRUASFUENTES</span><span class="text-slate-400">2 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GLOVALADVISORY</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">GOBRAVOES</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">SERVIHABITAT</span><span class="text-slate-400">1 pol</span></div>
+                            <div class="flex justify-between text-xs"><span class="text-slate-600">SOFTECA</span><span class="text-slate-400">1 pol</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Insight -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-4">
+                <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2">💡 Lectura de los datos</p>
+                <p class="text-sm text-white leading-relaxed">Con solo <strong class="text-amber-300">3 semanas desde el lanzamiento</strong>, 27 clientes (11,4%) ya han configurado alguna opción nueva. La más adoptada es <strong class="text-white">"solo lo planificado en caso de exceso"</strong> con 21 clientes y 41 políticas. En deducción automática, los clientes prefieren ligeramente el <strong class="text-white">mínimo obligatorio</strong> (8 clientes) frente al tiempo planificado del tramo (6). <strong class="text-amber-300">PELAYO e IFEMA</strong> son los early adopters más completos, usando varias opciones simultáneamente.</p>
+            </div>
+
+        </div>
+
         <!-- ═══════════════════════════════════════════════════════
              SUBTAB 3: SALDO DE HORAS
         ═══════════════════════════════════════════════════════ -->
@@ -1500,6 +1637,7 @@
                 if (tab === 'volumen') createRutasChart();
                 if (tab === 'misregistros') { createDiasChart(); createNpsChart(); }
                 if (tab === 'saldo') createSaldoChart();
+                // politicas: no charts needed
             }, 50);
         }
 
