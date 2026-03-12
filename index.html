@@ -978,22 +978,7 @@
         ═══════════════════════════════════════════════════════ -->
         <div id="metricas-volumen-content" class="metricas-tab-content active">
 
-            <!-- KPI strip Mis Registros -->
-            <div class="mb-4 bg-violet-600 rounded-2xl p-4 flex flex-wrap gap-4 items-center">
-                <div class="flex-1 min-w-[140px]">
-                    <p class="text-violet-200 text-xs mb-0.5">Mis registros · Feb 2026</p>
-                    <p class="text-white text-2xl font-bold">222.150</p>
-                    <p class="text-violet-200 text-xs">eventos de página</p>
-                </div>
-                <div class="flex-1 min-w-[120px]">
-                    <p class="text-violet-200 text-xs mb-0.5">vs Dic 2025</p>
-                    <p class="text-emerald-300 text-xl font-bold">+64% ↑</p>
-                    <p class="text-violet-200 text-xs">135.529 → 222.150</p>
-                </div>
-                <div class="text-violet-100 text-xs max-w-[220px] leading-relaxed">
-                    📌 Excluida de la gráfica inferior por diferencia de escala — su volumen triplica al resto.
-                </div>
-            </div>
+
 
             <!-- Gráfica rutas -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-4">
@@ -1044,17 +1029,10 @@
                 <div class="divide-y divide-violet-100">
                     <div class="flex items-center justify-between py-2.5">
                         <div>
-                            <p class="text-sm font-medium text-violet-900">Registrar (real time) — cualquier acción</p>
-                            <p class="text-xs text-violet-500">Fichar entrada/salida · 176 cuentas</p>
+                            <p class="text-sm font-medium text-violet-900">Registrar</p>
+                            <p class="text-xs text-violet-500">Real time (176 cuentas) + Registro único (71 cuentas) · Feb 2026</p>
                         </div>
-                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">179.820</p>
-                    </div>
-                    <div class="flex items-center justify-between py-2.5">
-                        <div>
-                            <p class="text-sm font-medium text-violet-900">Registrar (registro único)</p>
-                            <p class="text-xs text-violet-500">Modalidad registro único · 71 cuentas</p>
-                        </div>
-                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">65.755</p>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">245.575</p>
                     </div>
                     <div class="flex items-center justify-between py-2.5">
                         <div>
@@ -1070,19 +1048,10 @@
             <!-- Por qué hay tantas ediciones -->
             <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-4">
                 <p class="text-xs font-semibold text-amber-700 mb-3 uppercase tracking-wide">📋 Por qué hay tantas solicitudes de edición</p>
-                <div class="space-y-2">
-                    <div class="flex gap-3 items-start">
-                        <span class="w-5 h-5 rounded-full bg-amber-400 text-white text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">1</span>
-                        <p class="text-sm text-amber-900"><strong>Causa estructural:</strong> todos los clientes del top 10 tienen modalidad <strong>Real</strong> — web, app móvil, BioStar y Kiosco. Cualquier corrección obliga a pasar por solicitud + aprobación del manager.</p>
-                    </div>
-                    <div class="flex gap-3 items-start">
-                        <span class="w-5 h-5 rounded-full bg-amber-400 text-white text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">2</span>
-                        <p class="text-sm text-amber-900"><strong>No es necesariamente fricción de UX</strong> — puede ser empleados que olvidan fichar, fichan mal o tienen jornadas variables. Sin saber el motivo, el número solo mide el síntoma.</p>
-                    </div>
-                    <div class="flex gap-3 items-start">
-                        <span class="w-5 h-5 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">3</span>
-                        <p class="text-sm text-amber-900"><strong>Oportunidad:</strong> si se reduce el motivo de solicitud, se reduce el tráfico en Ediciones de jornada también. Son dos rutas conectadas.</p>
-                    </div>
+                <div class="space-y-1.5">
+                    <p class="text-sm text-amber-900">· Modalidad <strong>Real</strong> obliga a solicitar edición para cualquier corrección.</p>
+                    <p class="text-sm text-amber-900">· No es fricción de UX — olvidos, errores y jornadas variables lo explican.</p>
+                    <p class="text-sm text-amber-900">· Reducir el motivo de solicitud reduce también el tráfico en Ediciones de jornada.</p>
                 </div>
             </div>
 
@@ -1127,8 +1096,7 @@
                         <canvas id="diasChart" height="160"></canvas>
                     </div>
                     <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-4">
-                        <p class="text-xs font-semibold text-indigo-700 mb-2">💡 El patrón es de semana laboral</p>
-                        <p class="text-sm text-indigo-900 leading-relaxed">Las solicitudes siguen la jornada laboral: máximo el miércoles (669) y mínimo el fin de semana (Vie 68 · Sáb 60). El domingo tiene actividad residual (~525) — probablemente empleados con turnos o modalidades atípicas. No hay señal de correcciones masivas diferidas al fin de semana.</p>
+
                     </div>
                 </div>
             </div>
@@ -1200,8 +1168,7 @@
                                 </div>
                             </div>
                             <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
-                                <p class="text-xs font-semibold text-amber-700 mb-1">💡 Análisis de la polarización</p>
-                                <p class="text-xs text-amber-900 leading-relaxed">El <strong>0 es el 3er valor más frecuente</strong> (85 usuarios) — hay frustración real, no simple indiferencia. El <strong>10 es el más votado</strong> (246). La base está muy dividida: probablemente los promotores tienen jornadas simples y los detractores son usuarios en modalidad Real con muchas ediciones.</p>
+  
                             </div>
                         </div>
                         <div class="bg-white rounded-xl border border-slate-100 p-3">
@@ -1215,97 +1182,95 @@
             <!-- Voz del usuario: comentarios NPS -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
                 <div class="px-4 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
-                    <div>
-                        <p class="font-semibold text-slate-700 text-sm">💬 Voz del usuario — Comentarios NPS</p>
-                        <p class="text-xs text-slate-500">210 comentarios de texto libre sobre 1.785 respuestas (11,8%) · Sep 2025 – Mar 2026</p>
-                    </div>
+                    <p class="font-semibold text-slate-700 text-sm">💬 Voz del usuario — Comentarios NPS</p>
+                    <p class="text-xs text-slate-400">210 comentarios · Sep 2025 – Mar 2026</p>
                 </div>
-                <div class="p-4">
-                    <!-- Temas principales -->
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Temas más mencionados espontáneamente</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+                <div class="p-4 space-y-2">
 
-                        <div class="border-l-4 border-red-400 bg-red-50 rounded-r-xl p-3">
-                            <div class="flex items-center justify-between mb-1">
-                                <p class="text-sm font-bold text-red-700">Flujo fin de comida → inicio de trabajo</p>
-                                <span class="text-xs bg-red-200 text-red-800 px-2 py-0.5 rounded-full font-semibold">38 menciones</span>
-                            </div>
-                            <p class="text-xs text-red-900 leading-relaxed">El problema más repetido. "Si ya marqué <em>fin de comida</em>, ¿por qué tengo que marcar también <em>inicio de trabajo</em>?" — Genera incidencias automáticas y frustración diaria en múltiples clientes.</p>
-                            <p class="text-xs text-red-600 italic mt-1.5">"El botón de fin de bocadillo y fin de comida es innecesario si no inicia la jornada nuevamente. Solo crea confusión."</p>
+                    <div class="flex items-start gap-3 p-3 bg-red-50 border border-red-100 rounded-xl">
+                        <span class="text-xs bg-red-200 text-red-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">38</span>
+                        <div>
+                            <p class="text-sm font-semibold text-red-700">Flujo fin de comida → inicio de trabajo</p>
+                            <p class="text-xs text-red-800 mt-0.5">Aparece en los 3 grupos (promotores, neutros, detractores). Error de diseño objetivo, no de percepción.</p>
                         </div>
-
-                        <div class="border-l-4 border-orange-400 bg-orange-50 rounded-r-xl p-3">
-                            <div class="flex items-center justify-between mb-1">
-                                <p class="text-sm font-bold text-orange-700">Fallos técnicos y fiabilidad</p>
-                                <span class="text-xs bg-orange-200 text-orange-800 px-2 py-0.5 rounded-full font-semibold">36 menciones</span>
-                            </div>
-                            <p class="text-xs text-orange-900 leading-relaxed">La app "no registra", "no guarda", confirma en verde pero el fichaje no aparece. Especialmente grave en móvil. Genera desconfianza total en el sistema.</p>
-                            <p class="text-xs text-orange-600 italic mt-1.5">"La aplicación móvil falla una barbaridad; pese a salir en verde 'guardado correctamente', en ocasiones no se almacena."</p>
-                        </div>
-
-                        <div class="border-l-4 border-blue-400 bg-blue-50 rounded-r-xl p-3">
-                            <div class="flex items-center justify-between mb-1">
-                                <p class="text-sm font-bold text-blue-700">Plantilla / autocompletar jornada</p>
-                                <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full font-semibold">20 menciones</span>
-                            </div>
-                            <p class="text-xs text-blue-900 leading-relaxed">"Siempre pongo lo mismo, ¿por qué repetirlo cada día?" Quieren copiar el día anterior o definir un horario tipo y solo confirmar si no hay cambios. Lo piden <strong>detractores y promotores</strong>.</p>
-                            <p class="text-xs text-blue-600 italic mt-1.5">"Me gustaría que guardara las horas de inicio/fin y comida por defecto para no tener que introducir las mismas todos los días."</p>
-                        </div>
-
-                        <div class="border-l-4 border-slate-400 bg-slate-50 rounded-r-xl p-3">
-                            <div class="flex items-center justify-between mb-1">
-                                <p class="text-sm font-bold text-slate-700">App móvil</p>
-                                <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-semibold">16 menciones</span>
-                            </div>
-                            <p class="text-xs text-slate-700 leading-relaxed">Estado ambiguo (siempre muestra "en curso" parpadeando), registros que se pierden con datos móviles cortados, no hay widget ni recordatorio fiable.</p>
-                        </div>
-
-                        <div class="border-l-4 border-violet-400 bg-violet-50 rounded-r-xl p-3">
-                            <div class="flex items-center justify-between mb-1">
-                                <p class="text-sm font-bold text-violet-700">No poder editar en el mismo día</p>
-                                <span class="text-xs bg-violet-200 text-violet-700 px-2 py-0.5 rounded-full font-semibold">14 menciones</span>
-                            </div>
-                            <p class="text-xs text-violet-900 leading-relaxed">"Me equivoqué y tengo que esperar al día siguiente para corregirlo." Conecta directamente con el volumen de solicitudes de edición que vemos en Pendo.</p>
-                        </div>
-
                     </div>
 
-                    <!-- Insight clave -->
-                    <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-4">
-                        <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2">💡 Insight clave</p>
-                        <p class="text-sm text-white leading-relaxed">El flujo <strong class="text-amber-300">fin de comida → inicio de trabajo</strong> es el único problema que aparece en los tres grupos: detractores, neutros y promotores. No es percepción de usuarios frustrados — es un error de diseño objetivo. Con <strong class="text-white">38 menciones espontáneas</strong> (sin que nadie pregunte específicamente por eso), es la mejora con mayor retorno potencial del módulo y la más directamente vinculada al volumen de incidencias en Pendo.</p>
+                    <div class="flex items-start gap-3 p-3 bg-orange-50 border border-orange-100 rounded-xl">
+                        <span class="text-xs bg-orange-200 text-orange-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">36</span>
+                        <div>
+                            <p class="text-sm font-semibold text-orange-700">Fallos técnicos y fiabilidad</p>
+                            <p class="text-xs text-orange-800 mt-0.5">Confirma en verde pero el fichaje no aparece. Especialmente grave en móvil.</p>
+                        </div>
                     </div>
+
+                    <div class="flex items-start gap-3 p-3 bg-blue-50 border border-blue-100 rounded-xl">
+                        <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">20</span>
+                        <div>
+                            <p class="text-sm font-semibold text-blue-700">Plantilla / autocompletar jornada</p>
+                            <p class="text-xs text-blue-800 mt-0.5">Copiar el día anterior o confirmar horario tipo. Lo piden detractores <em>y</em> promotores.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">16</span>
+                        <div>
+                            <p class="text-sm font-semibold text-slate-700">App móvil</p>
+                            <p class="text-xs text-slate-600 mt-0.5">Estado ambiguo, registros perdidos con datos cortados, sin widget ni recordatorio fiable.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-3 bg-violet-50 border border-violet-100 rounded-xl">
+                        <span class="text-xs bg-violet-200 text-violet-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">14</span>
+                        <div>
+                            <p class="text-sm font-semibold text-violet-700">No poder editar en el mismo día</p>
+                            <p class="text-xs text-violet-800 mt-0.5">Conecta directamente con el volumen de solicitudes de edición en Pendo.</p>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
 
             <!-- Siguientes acciones -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
-                <p class="text-xs font-semibold text-slate-600 mb-4 uppercase tracking-wide">🎯 Siguientes acciones</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div class="border border-slate-200 rounded-xl p-4">
-                        <span class="text-xl mb-2 block">🗄️</span>
-                        <p class="font-bold text-slate-800 text-sm mb-1">Revisar motivos en base de datos</p>
-                        <p class="text-slate-500 text-xs leading-relaxed">Qué escriben en el campo motivo al solicitar edición. Primero ver qué % lo rellena — si está vacío, la encuesta Pendo es la única fuente.</p>
+                <p class="text-xs font-semibold text-slate-600 mb-3 uppercase tracking-wide">🎯 Siguientes acciones</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="flex items-start gap-2 p-3 bg-violet-50 border border-violet-100 rounded-xl">
+                        <span class="text-base shrink-0">🗄️</span>
+                        <div>
+                            <p class="font-semibold text-slate-800 text-xs">Motivo de edición → desplegable</p>
+                            <p class="text-slate-500 text-xs mt-0.5">El 45% de motivos no aporta información. Sustituir campo libre por opciones predefinidas.</p>
+                        </div>
                     </div>
-                    <div class="border border-slate-200 rounded-xl p-4">
-                        <span class="text-xl mb-2 block">🎨</span>
-                        <p class="font-bold text-slate-800 text-sm mb-1">Rediseñar el widget de registro en tiempo real</p>
-                        <p class="text-slate-500 text-xs leading-relaxed">Reducir las fricciones detectadas: flujo fin de comida → inicio de trabajo, estado ambiguo en móvil y gestión de descansos.</p>
+                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-base shrink-0">🎨</span>
+                        <div>
+                            <p class="font-semibold text-slate-800 text-xs">Rediseñar widget de registro</p>
+                            <p class="text-slate-500 text-xs mt-0.5">Flujo fin de comida → inicio trabajo, estado móvil y gestión de descansos.</p>
+                        </div>
                     </div>
-                    <div class="border border-slate-200 rounded-xl p-4">
-                        <span class="text-xl mb-2 block">📋</span>
-                        <p class="font-bold text-slate-800 text-sm mb-1">Copiar jornada anterior o registrar lo planificado</p>
-                        <p class="text-slate-500 text-xs leading-relaxed">Nueva acción en tramo a tramo y único: reutilizar la jornada del día anterior o completar automáticamente desde la planificación. Ahorra tiempo al usuario e invita a cerrar el registro.</p>
+                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-base shrink-0">📋</span>
+                        <div>
+                            <p class="font-semibold text-slate-800 text-xs">Copiar jornada anterior</p>
+                            <p class="text-slate-500 text-xs mt-0.5">Reutilizar el día anterior o completar desde planificación con un clic.</p>
+                        </div>
                     </div>
-                    <div class="border border-slate-200 rounded-xl p-4">
-                        <span class="text-xl mb-2 block">🗺️</span>
-                        <p class="font-bold text-slate-800 text-sm mb-1">Revisión de grabaciones Clarity — dead clicks</p>
-                        <p class="text-slate-500 text-xs leading-relaxed">Filtrar dead click + URL Mis registros + varios clientes. Revisar 5-6 grabaciones para confirmar el patrón antes de sacar conclusiones.</p>
+                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-base shrink-0">🗺️</span>
+                        <div>
+                            <p class="font-semibold text-slate-800 text-xs">Grabaciones Clarity — dead clicks</p>
+                            <p class="text-slate-500 text-xs mt-0.5">Confirmar patrón de reclics en selector de jornada con 5-6 grabaciones.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+
+                </div>
 
 
         <!-- ═══════════════════════════════════════════════════════
