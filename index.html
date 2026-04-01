@@ -954,533 +954,199 @@
 
         <!-- Header -->
         <div class="mb-5 bg-gradient-to-r from-violet-50 to-blue-50 p-5 rounded-2xl border border-violet-200">
-            <h3 class="font-bold text-violet-800 mb-1 flex items-center gap-2">📊 Métricas de uso · Time &amp; Holidays</h3>
-            <p class="text-sm text-violet-600 mb-4">Datos Pendo · Sprint Core 1 · Dic 2025 – Mar 2026</p>
-            <!-- Subtabs navegación -->
-            <div class="flex flex-wrap gap-2">
-                <button id="mtab-volumen" onclick="showMetricasTab('volumen')" class="metricas-tab-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all">
-                    📈 Uso del módulo
+            <h2 class="font-bold text-violet-800 text-lg flex items-center gap-2">📊 Métricas</h2>
+            <p class="text-violet-600 text-sm mt-0.5">Datos de uso por módulo · Sprint 26Q1</p>
+        </div>
+
+        <!-- Subtabs -->
+        <div class="mb-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-2">
+            <div class="flex gap-2 flex-wrap">
+                <button id="mtab-vacaciones" onclick="showMetricasTab('vacaciones')" class="metricas-tab-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all">
+                    🏖️ Mis vacaciones y ausencias
                 </button>
-                <button id="mtab-misregistros" onclick="showMetricasTab('misregistros')" class="metricas-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 border border-slate-200">
-                    🔍 Mis registros en profundidad
-                </button>
-                <button id="mtab-saldo" onclick="showMetricasTab('saldo')" class="metricas-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 border border-slate-200">
-                    🆕 Saldo de horas
-                </button>
-                <button id="mtab-politicas" onclick="showMetricasTab('politicas')" class="metricas-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white text-slate-600 border border-slate-200">
-                    ⚙️ Restricciones en políticas
-                </button>
+
             </div>
         </div>
 
         <!-- ═══════════════════════════════════════════════════════
-             SUBTAB 1: USO DEL MÓDULO
+             SUBTAB 1: MIS VACACIONES Y AUSENCIAS
         ═══════════════════════════════════════════════════════ -->
-        <div id="metricas-volumen-content" class="metricas-tab-content active">
+        <div id="metricas-vacaciones-content" class="metricas-tab-content active">
 
+            <!-- KPIs principales -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-violet-600">87.007</p>
+                    <p class="text-xs text-slate-500 mt-1">Visitas · Mis vac. y aus.</p>
+                    <p class="text-xs text-slate-400">Feb–Mar 2026</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-slate-700">14.096</p>
+                    <p class="text-xs text-slate-500 mt-1">Visitantes únicos</p>
+                    <p class="text-xs text-slate-400">214 cuentas</p>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-amber-600">4.694</p>
+                    <p class="text-xs text-amber-600 mt-1">Dead clicks</p>
+                    <p class="text-xs text-slate-400">BTN Añadir solicitud</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                    <p class="text-2xl font-bold text-slate-700">↑</p>
+                    <p class="text-xs text-slate-500 mt-1">Tendencia semanal</p>
+                    <p class="text-xs text-slate-400">14.920 → 16.078</p>
+                </div>
+            </div>
 
-
-            <!-- Gráfica rutas -->
+            <!-- Gráfica páginas más visitadas -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-4">
-                <p class="text-xs font-medium text-slate-500 mb-3">Resto de páginas destacadas — eventos/mes (Dic 2025 – Feb 2026)</p>
-                <canvas id="rutasChart" height="120"></canvas>
+                <p class="text-sm font-semibold text-slate-700 mb-4">📊 Páginas más visitadas · Feb–Mar 2026</p>
+                <canvas id="vacPaginasChart" height="180"></canvas>
             </div>
 
-            <!-- Tabla resumen -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <table class="w-full text-sm">
-                    <thead class="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                            <th class="text-left px-4 py-2.5 text-slate-600 font-semibold">Página</th>
-                            <th class="text-right px-3 py-2.5 text-slate-600 font-semibold">Dic 2025</th>
-                            <th class="text-right px-3 py-2.5 text-slate-600 font-semibold">Ene 2026</th>
-                            <th class="text-right px-3 py-2.5 text-slate-600 font-semibold">Feb 2026</th>
-                            <th class="text-right px-3 py-2.5 text-slate-600 font-semibold">Tendencia</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr class="bg-violet-50">
-                            <td class="px-4 py-2.5 font-semibold text-violet-700">Mis registros</td>
-                            <td class="px-3 py-2.5 text-right text-slate-700">135.529</td>
-                            <td class="px-3 py-2.5 text-right text-slate-700">161.871</td>
-                            <td class="px-3 py-2.5 text-right font-semibold text-violet-700">222.150</td>
-                            <td class="px-3 py-2.5 text-right text-emerald-600 font-medium">+64% ↑</td>
-                        </tr>
-                        <tr><td class="px-4 py-2.5 text-slate-700">Edic. jornada (Eq+Cía)</td><td class="px-3 py-2.5 text-right text-slate-600">8.449</td><td class="px-3 py-2.5 text-right text-slate-600">8.441</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">10.306</td><td class="px-3 py-2.5 text-right text-emerald-600">+22% ↑</td></tr>
-                        <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-700">Incidencias</td><td class="px-3 py-2.5 text-right text-slate-600">7.120</td><td class="px-3 py-2.5 text-right text-slate-600">6.235</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">6.528</td><td class="px-3 py-2.5 text-right text-red-500">−8% ↓</td></tr>
-                        <tr><td class="px-4 py-2.5 text-slate-700">Registro de tramos</td><td class="px-3 py-2.5 text-right text-slate-600">6.292</td><td class="px-3 py-2.5 text-right text-slate-600">5.826</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">6.362</td><td class="px-3 py-2.5 text-right text-slate-500">+1% →</td></tr>
-                        <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-700">Turnos</td><td class="px-3 py-2.5 text-right text-slate-600">5.087</td><td class="px-3 py-2.5 text-right text-slate-600">6.271</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">6.905</td><td class="px-3 py-2.5 text-right text-emerald-600">+36% ↑</td></tr>
-                        <tr><td class="px-4 py-2.5 text-slate-700">Horas especiales</td><td class="px-3 py-2.5 text-right text-slate-600">4.758</td><td class="px-3 py-2.5 text-right text-slate-600">5.181</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">5.466</td><td class="px-3 py-2.5 text-right text-emerald-600">+15% ↑</td></tr>
-                        <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-700">Mi planificación</td><td class="px-3 py-2.5 text-right text-slate-600">1.770</td><td class="px-3 py-2.5 text-right text-slate-600">2.880</td><td class="px-3 py-2.5 text-right font-medium text-slate-700">4.216</td><td class="px-3 py-2.5 text-right text-emerald-600">+138% ↑</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════
-             SUBTAB 2: MIS REGISTROS EN PROFUNDIDAD
-        ═══════════════════════════════════════════════════════ -->
-        <div id="metricas-misregistros-content" class="metricas-tab-content">
-
-            <!-- Qué hace la gente en Mis registros -->
+            <!-- Acciones en Mis vac. y aus. -->
             <div class="bg-violet-50 border border-violet-200 rounded-2xl p-4 mb-4">
-                <p class="text-xs font-semibold text-violet-700 mb-3 uppercase tracking-wide">📍 Qué hace la gente en Mis registros · Feb 2026</p>
+                <p class="text-xs font-semibold text-violet-700 mb-3 uppercase tracking-wide">⚡ Acciones más usadas en Mis vacaciones y ausencias · Feb–Mar 2026</p>
                 <div class="divide-y divide-violet-100">
                     <div class="flex items-center justify-between py-2.5">
                         <div>
-                            <p class="text-sm font-medium text-violet-900">Registrar</p>
-                            <p class="text-xs text-violet-500">Real time (176 cuentas) + Registro único (71 cuentas) · Feb 2026</p>
+                            <p class="text-sm font-medium text-violet-900">Añadir solicitud (BTN)</p>
+                            <p class="text-xs text-violet-500">11.134 visitantes únicos · 199 cuentas</p>
                         </div>
-                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">245.575</p>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">140.351</p>
                     </div>
                     <div class="flex items-center justify-between py-2.5">
                         <div>
-                            <p class="text-sm font-medium text-amber-800">Solicitar edición de jornada</p>
-                            <p class="text-xs text-amber-600">138 cuentas · 3.933 usuarios únicos</p>
+                            <p class="text-sm font-medium text-violet-900">Consumo y disponibilidad (card)</p>
+                            <p class="text-xs text-violet-500">7.192 visitantes únicos · 193 cuentas</p>
                         </div>
-                        <p class="text-xl font-bold text-amber-600 shrink-0 ml-4">14.758</p>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">37.916</p>
+                    </div>
+                    <div class="flex items-center justify-between py-2.5">
+                        <div>
+                            <p class="text-sm font-medium text-violet-900">Filtro Periodo</p>
+                            <p class="text-xs text-violet-500">4.852 visitantes únicos · 179 cuentas</p>
+                        </div>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">22.062</p>
+                    </div>
+                    <div class="flex items-center justify-between py-2.5">
+                        <div>
+                            <p class="text-sm font-medium text-violet-900">→ Vacaciones</p>
+                            <p class="text-xs text-violet-500">8.010 visitantes únicos · 188 cuentas</p>
+                        </div>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">21.155</p>
+                    </div>
+                    <div class="flex items-center justify-between py-2.5">
+                        <div>
+                            <p class="text-sm font-medium text-violet-900">→ Ausencias</p>
+                            <p class="text-xs text-violet-500">5.739 visitantes únicos · 180 cuentas</p>
+                        </div>
+                        <p class="text-xl font-bold text-violet-700 shrink-0 ml-4">16.945</p>
                     </div>
                 </div>
-                <p class="text-xs text-violet-500 mt-3">📌 El registro es el uso principal. Las solicitudes de edición son un flujo secundario pero con mucho volumen que merece entender.</p>
-            </div>
-
-            <!-- Por qué hay tantas ediciones -->
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-4">
-                <p class="text-xs font-semibold text-amber-700 mb-3 uppercase tracking-wide">📋 Por qué hay tantas solicitudes de edición</p>
-                <div class="space-y-1.5">
-                    <p class="text-sm text-amber-900">· Modalidad <strong>Real</strong> obliga a solicitar edición para cualquier corrección.</p>
-                    <p class="text-sm text-amber-900">· No es fricción de UX — olvidos, errores y jornadas variables lo explican.</p>
-                    <p class="text-sm text-amber-900">· Reducir el motivo de solicitud reduce también el tráfico en Ediciones de jornada.</p>
-                </div>
-            </div>
-
-            <!-- Top 10 + días semana en columnas -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-
-                <!-- Top 10 solicitudes edición -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
-                        <p class="font-semibold text-slate-700 text-sm">Top 10 — Solicitudes de edición</p>
-                        <p class="text-xs text-slate-500">Ene + Feb 2026 · Modalidad Real</p>
-                    </div>
-                    <table class="w-full text-xs">
-                        <thead><tr class="border-b border-slate-100 text-slate-500">
-                            <th class="text-left px-3 py-2">#</th>
-                            <th class="text-left px-2 py-2">Cliente</th>
-                            <th class="text-right px-2 py-2">Solic.</th>
-                            <th class="text-right px-3 py-2">Edic/p.</th>
-                        </tr></thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="bg-blue-50/40"><td class="px-3 py-2 text-slate-400">1</td><td class="px-2 py-2 font-medium text-slate-800">IFEMA ⭐</td><td class="px-2 py-2 text-right font-semibold text-slate-800">1.627</td><td class="px-3 py-2 text-right text-slate-600">4.2</td></tr>
-                            <tr><td class="px-3 py-2 text-slate-400">2</td><td class="px-2 py-2 font-medium text-slate-800">MACCRESIDENCIAL</td><td class="px-2 py-2 text-right font-semibold text-slate-800">1.569</td><td class="px-3 py-2 text-right font-semibold text-red-600">12.8 🔴</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-3 py-2 text-slate-400">3</td><td class="px-2 py-2 font-medium text-slate-800">GRUPORETABET</td><td class="px-2 py-2 text-right font-semibold text-slate-800">1.405</td><td class="px-3 py-2 text-right text-slate-600">5.2</td></tr>
-                            <tr><td class="px-3 py-2 text-slate-400">4</td><td class="px-2 py-2 font-medium text-slate-800">CEF</td><td class="px-2 py-2 text-right font-semibold text-slate-800">1.263</td><td class="px-3 py-2 text-right text-slate-600">4.8</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-3 py-2 text-slate-400">5</td><td class="px-2 py-2 font-medium text-slate-800">GROUPESEB</td><td class="px-2 py-2 text-right font-semibold text-slate-800">1.080</td><td class="px-3 py-2 text-right text-slate-600">5.9</td></tr>
-                            <tr><td class="px-3 py-2 text-slate-400">6</td><td class="px-2 py-2 font-medium text-slate-800">CEPA ⚠️</td><td class="px-2 py-2 text-right font-semibold text-slate-800">957</td><td class="px-3 py-2 text-right font-semibold text-red-600">56.3 🔴</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-3 py-2 text-slate-400">7</td><td class="px-2 py-2 font-medium text-slate-800">CALAIXDECULTURA</td><td class="px-2 py-2 text-right font-semibold text-slate-800">793</td><td class="px-3 py-2 text-right text-slate-600">4.6</td></tr>
-                            <tr><td class="px-3 py-2 text-slate-400">8</td><td class="px-2 py-2 font-medium text-slate-800">DEUDAFIX</td><td class="px-2 py-2 text-right font-semibold text-slate-800">766</td><td class="px-3 py-2 text-right text-slate-600">4.1</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-3 py-2 text-slate-400">9</td><td class="px-2 py-2 font-medium text-slate-800">MATACHANA</td><td class="px-2 py-2 text-right font-semibold text-slate-800">748</td><td class="px-3 py-2 text-right text-slate-600">4.6</td></tr>
-                            <tr><td class="px-3 py-2 text-slate-400">10</td><td class="px-2 py-2 font-medium text-slate-800">APERITIVOSLAREAL</td><td class="px-2 py-2 text-right font-semibold text-slate-800">557</td><td class="px-3 py-2 text-right text-slate-600">4.9</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="px-3 py-2 bg-slate-50 border-t border-slate-100">
-                        <p class="text-xs text-slate-500">💡 Edic/p. = ediciones por persona de media. CEPA anomalía: 56.3 con solo 17 usuarios activos.</p>
-                    </div>
-                </div>
-
-                <!-- Distribución días semana + conclusión -->
-                <div class="flex flex-col gap-3">
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 flex-1">
-                        <p class="text-xs font-medium text-slate-500 mb-2">Solicitudes edición por día · Media Feb 2026</p>
-                        <canvas id="diasChart" height="160"></canvas>
-                    </div>
-                    <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-4">
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dead clicks -->
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-4">
-                <p class="text-xs font-semibold text-slate-600 mb-3 uppercase tracking-wide">🔍 Señal a revisar con calma: dead clicks en selector de jornada</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                    <div class="bg-white rounded-xl border border-slate-200 p-3 text-center">
-                        <p class="text-xl font-bold text-slate-700">16.433</p>
-                        <p class="text-xs text-slate-500 mt-0.5">Dead clicks · ~10% del total</p>
-                    </div>
-                    <div class="bg-white rounded-xl border border-slate-200 p-3 text-center">
-                        <p class="text-xl font-bold text-slate-700">163.982</p>
-                        <p class="text-xs text-slate-500 mt-0.5">Eventos totales en selector</p>
-                    </div>
-                    <div class="bg-white rounded-xl border border-slate-200 p-3 text-center">
-                        <p class="text-xl font-bold text-orange-500">278</p>
-                        <p class="text-xs text-slate-500 mt-0.5">Rage clicks en selector</p>
-                    </div>
-                </div>
-                <p class="text-sm text-slate-700 leading-relaxed">Clicar en la fila <em>sí</em> selecciona el día. La hipótesis es que son <strong>reclics sobre un día ya seleccionado</strong> esperando una segunda acción (detalle, edición directa). Pendiente confirmar con grabaciones de Clarity — hay que tomarlo con calma antes de sacar conclusiones.</p>
             </div>
 
             <!-- NPS -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
-                <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
-                    <p class="font-semibold text-slate-700 text-sm">NPS — "¿Cómo valorarías el registro de jornada?"</p>
-                    <p class="text-xs text-slate-500">Dic 2025 – Mar 2026 · 993 respuestas · 128 cuentas · 5.868 vistas del popup</p>
+                <div class="px-4 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+                    <p class="font-semibold text-slate-700 text-sm">⭐ NPS — Mis vacaciones y ausencias</p>
+                    <p class="text-xs text-slate-400">Dic 2025 – Mar 2026 · 503 respuestas · 180 cuentas</p>
                 </div>
                 <div class="p-4">
-                    <!-- KPIs NPS -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                        <div class="bg-slate-50 rounded-xl p-3 text-center">
-                            <p class="text-2xl font-bold text-slate-700">3,93</p>
-                            <p class="text-xs text-slate-500 mt-0.5">NPS Score</p>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-emerald-600">18,3</p>
+                            <p class="text-xs text-slate-500 mt-1">NPS Score</p>
                         </div>
-                        <div class="bg-slate-50 rounded-xl p-3 text-center">
-                            <p class="text-2xl font-bold text-slate-600">6,90</p>
-                            <p class="text-xs text-slate-500 mt-0.5">Puntuación media</p>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-slate-700">7,4</p>
+                            <p class="text-xs text-slate-500 mt-1">Puntuación media</p>
                         </div>
-                        <div class="bg-slate-50 rounded-xl p-3 text-center">
-                            <p class="text-2xl font-bold text-slate-500">17,3%</p>
-                            <p class="text-xs text-slate-500 mt-0.5">Tasa de respuesta</p>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-slate-500">12,4%</p>
+                            <p class="text-xs text-slate-500 mt-1">Tasa de respuesta</p>
                         </div>
-                        <div class="bg-slate-50 rounded-xl p-3 text-center">
-                            <p class="text-2xl font-bold text-slate-500">76,2%</p>
-                            <p class="text-xs text-slate-500 mt-0.5">Lo cerraron sin responder</p>
-                        </div>
-                    </div>
-                    <!-- Distribución promotores/neutros/detractores + gráfica -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <div class="flex gap-2 mb-3">
-                                <div class="flex-1 bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center">
-                                    <p class="text-lg font-bold text-emerald-600">384</p>
-                                    <p class="text-xs text-emerald-700 font-medium">Promotores</p>
-                                    <p class="text-xs text-slate-500">38,7% · (9-10)</p>
-                                </div>
-                                <div class="flex-1 bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
-                                    <p class="text-lg font-bold text-slate-500">264</p>
-                                    <p class="text-xs text-slate-600 font-medium">Neutros</p>
-                                    <p class="text-xs text-slate-500">26,6% · (7-8)</p>
-                                </div>
-                                <div class="flex-1 bg-red-50 border border-red-200 rounded-xl p-3 text-center">
-                                    <p class="text-lg font-bold text-red-500">345</p>
-                                    <p class="text-xs text-red-600 font-medium">Detractores</p>
-                                    <p class="text-xs text-slate-500">34,7% · (0-6)</p>
-                                </div>
-                            </div>
-                            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
-  
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-xl border border-slate-100 p-3">
-                            <p class="text-xs font-medium text-slate-500 mb-2">Distribución de puntuaciones</p>
-                            <canvas id="npsChart" height="180"></canvas>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-slate-400">83,4%</p>
+                            <p class="text-xs text-slate-400 mt-1">Cierra sin responder</p>
                         </div>
                     </div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-emerald-50 border border-emerald-100 rounded-xl p-3 text-center">
+                            <p class="text-xl font-bold text-emerald-600">227</p>
+                            <p class="text-xs text-emerald-600 mt-0.5">Promotores</p>
+                            <p class="text-xs text-slate-400">45,1%</p>
+                        </div>
+                        <div class="flex-1 bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
+                            <p class="text-xl font-bold text-slate-500">141</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Neutros</p>
+                            <p class="text-xs text-slate-400">28,0%</p>
+                        </div>
+                        <div class="flex-1 bg-red-50 border border-red-100 rounded-xl p-3 text-center">
+                            <p class="text-xl font-bold text-red-500">135</p>
+                            <p class="text-xs text-red-500 mt-0.5">Detractores</p>
+                            <p class="text-xs text-slate-400">26,8%</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 italic">«¿Cómo valorarías la gestión de vacaciones y ausencias en la aplicación?»</p>
                 </div>
             </div>
 
-            <!-- Voz del usuario: comentarios NPS -->
+            <!-- Voz del usuario -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
                 <div class="px-4 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
                     <p class="font-semibold text-slate-700 text-sm">💬 Voz del usuario — Comentarios NPS</p>
-                    <p class="text-xs text-slate-400">210 comentarios · Sep 2025 – Mar 2026</p>
+                    <p class="text-xs text-slate-400">102 comentarios · 1.036 respuestas · Nov 2025 – Mar 2026</p>
                 </div>
                 <div class="p-4 space-y-2">
 
                     <div class="flex items-start gap-3 p-3 bg-red-50 border border-red-100 rounded-xl">
-                        <span class="text-xs bg-red-200 text-red-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">38</span>
+                        <span class="text-xs bg-red-200 text-red-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">44</span>
                         <div>
-                            <p class="text-sm font-semibold text-red-700">Flujo fin de comida → inicio de trabajo</p>
-                            <p class="text-xs text-red-800 mt-0.5">Aparece en los 3 grupos (promotores, neutros, detractores). Error de diseño objetivo, no de percepción.</p>
+                            <p class="text-sm font-semibold text-red-700">Poca intuitividad</p>
+                            <p class="text-xs text-red-800 mt-0.5">El problema más repetido, en detractores y neutros. «No es intuitivo», «hay que dar muchos pasos», «más complejo que la versión anterior».</p>
+                            <p class="text-xs text-red-600 mt-1 italic">→ Se están desarrollando mejoras visuales y de UX en la pantalla.</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3 p-3 bg-orange-50 border border-orange-100 rounded-xl">
-                        <span class="text-xs bg-orange-200 text-orange-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">36</span>
+                        <span class="text-xs bg-orange-200 text-orange-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">9</span>
                         <div>
-                            <p class="text-sm font-semibold text-orange-700">Fallos técnicos y fiabilidad</p>
-                            <p class="text-xs text-orange-800 mt-0.5">Confirma en verde pero el fichaje no aparece. Especialmente grave en móvil.</p>
+                            <p class="text-sm font-semibold text-orange-700">Cálculo de horas y saldos confuso</p>
+                            <p class="text-xs text-orange-800 mt-0.5">Contadores que no cuadran con la jornada real. Especialmente crítico en empleados con jornadas mixtas.</p>
+                            <p class="text-xs text-orange-600 mt-1 italic">→ Se mejorará con la actualización a ciclos en la siguiente versión de políticas de vacaciones y ausencias.</p>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-3 p-3 bg-blue-50 border border-blue-100 rounded-xl">
-                        <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">20</span>
+                    <div class="flex items-start gap-3 p-3 bg-amber-50 border border-amber-100 rounded-xl">
+                        <span class="text-xs bg-amber-200 text-amber-800 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">8</span>
                         <div>
-                            <p class="text-sm font-semibold text-blue-700">Plantilla / autocompletar jornada</p>
-                            <p class="text-xs text-blue-800 mt-0.5">Copiar el día anterior o confirmar horario tipo. Lo piden detractores <em>y</em> promotores.</p>
+                            <p class="text-sm font-semibold text-amber-700">No poder cancelar ni modificar solicitudes</p>
+                            <p class="text-xs text-amber-800 mt-0.5">Piden anular una solicitud enviada antes de que el manager la apruebe. Solo detractores.</p>
+                            <p class="text-xs text-amber-600 mt-1 italic">→ Se revisará el proceso cuando se desarrollen los nuevos flujos de aprobación.</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
-                        <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">16</span>
+                        <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">5</span>
                         <div>
-                            <p class="text-sm font-semibold text-slate-700">App móvil</p>
-                            <p class="text-xs text-slate-600 mt-0.5">Estado ambiguo, registros perdidos con datos cortados, sin widget ni recordatorio fiable.</p>
+                            <p class="text-sm font-semibold text-slate-700">Ausencias por médico — flujo incómodo</p>
+                            <p class="text-xs text-slate-600 mt-0.5">Hay que registrar la ausencia antes de saber cuánto tiempo se estará. Piden poder añadirla al volver.</p>
+                            <p class="text-xs text-slate-500 mt-1 italic">→ Se está analizando para mejorar el flujo cuando haya capacidad.</p>
                         </div>
                     </div>
-
-                    <div class="flex items-start gap-3 p-3 bg-violet-50 border border-violet-100 rounded-xl">
-                        <span class="text-xs bg-violet-200 text-violet-700 px-2 py-0.5 rounded-full font-bold whitespace-nowrap mt-0.5">14</span>
-                        <div>
-                            <p class="text-sm font-semibold text-violet-700">No poder editar en el mismo día</p>
-                            <p class="text-xs text-violet-800 mt-0.5">Conecta directamente con el volumen de solicitudes de edición en Pendo.</p>
-                        </div>
-                    </div>
-
-
 
                 </div>
             </div>
 
-            <!-- Siguientes acciones -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
-                <p class="text-xs font-semibold text-slate-600 mb-3 uppercase tracking-wide">🎯 Siguientes acciones</p>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="flex items-start gap-2 p-3 bg-violet-50 border border-violet-100 rounded-xl">
-                        <span class="text-base shrink-0">🗄️</span>
-                        <div>
-                            <p class="font-semibold text-slate-800 text-xs">Motivo de edición → desplegable</p>
-                            <p class="text-slate-500 text-xs mt-0.5">El 45% de motivos no aporta información. Sustituir campo libre por opciones predefinidas.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
-                        <span class="text-base shrink-0">🎨</span>
-                        <div>
-                            <p class="font-semibold text-slate-800 text-xs">Rediseñar widget de registro</p>
-                            <p class="text-slate-500 text-xs mt-0.5">Flujo fin de comida → inicio trabajo, estado móvil y gestión de descansos.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
-                        <span class="text-base shrink-0">📋</span>
-                        <div>
-                            <p class="font-semibold text-slate-800 text-xs">Copiar jornada anterior</p>
-                            <p class="text-slate-500 text-xs mt-0.5">Reutilizar el día anterior o completar desde planificación con un clic.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
-                        <span class="text-base shrink-0">🗺️</span>
-                        <div>
-                            <p class="font-semibold text-slate-800 text-xs">Grabaciones Clarity — dead clicks</p>
-                            <p class="text-slate-500 text-xs mt-0.5">Confirmar patrón de reclics en selector de jornada con 5-6 grabaciones.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Alerta dead clicks -->
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                <p class="text-xs font-semibold text-amber-700 mb-1">⚠️ Señal de fricción — BTN Añadir solicitud</p>
+                <p class="text-sm text-amber-900">4.694 dead clicks sobre 140.351 eventos (3,3%). El usuario hace clic y no percibe respuesta inmediata — posible lag en apertura del modal. <span class="font-semibold">Revisar en Clarity</span>: filtrar sesiones con dead click en la URL de Mis vacaciones y ausencias sobre el botón Añadir solicitud.</p>
             </div>
 
         </div>
 
 
-                </div>
-
-
-        <!-- ═══════════════════════════════════════════════════════
-             SUBTAB 4: RESTRICCIONES EN POLÍTICAS
-        ═══════════════════════════════════════════════════════ -->
-        <div id="metricas-politicas-content" class="metricas-tab-content">
-
-            <!-- Intro -->
-            <div class="mb-4 bg-slate-50 border border-slate-200 rounded-2xl p-4">
-                <p class="text-sm text-slate-700 leading-relaxed">El <strong>17 de febrero</strong> se lanzaron nuevas opciones en las políticas de registro horario. Los datos muestran el estado de adopción actual sobre los <strong>237 clientes</strong> con políticas activas (510 políticas en total).</p>
-            </div>
-
-            <!-- 3 KPIs -->
-            <div class="grid grid-cols-3 gap-3 mb-5">
-                <div class="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
-                    <p class="text-2xl font-bold text-slate-700">237</p>
-                    <p class="text-xs text-slate-500 mt-1">Clientes con políticas activas</p>
-                </div>
-                <div class="bg-violet-50 border border-violet-200 rounded-2xl p-4 text-center shadow-sm">
-                    <p class="text-2xl font-bold text-violet-700">27</p>
-                    <p class="text-xs text-violet-600 mt-1">Han activado alguna opción nueva</p>
-                    <p class="text-xs text-slate-400 mt-0.5">11,4% del total</p>
-                </div>
-                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center shadow-sm">
-                    <p class="text-2xl font-bold text-emerald-600">80</p>
-                    <p class="text-xs text-emerald-600 mt-1">Total políticas con opciones nuevas</p>
-                </div>
-            </div>
-
-            <!-- 4 bloques en grid 2x2 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-
-                <!-- Check redondear -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 bg-blue-50 border-b border-blue-100">
-                        <p class="font-semibold text-blue-800 text-sm">Ajuste de cómputo — Redondear total a la baja</p>
-                        <p class="text-xs text-blue-500 mt-0.5">Contabilizar todo lo registrado + check redondear por medias horas</p>
-                    </div>
-                    <div class="p-4 flex gap-6">
-                        <div class="text-center shrink-0">
-                            <p class="text-3xl font-bold text-blue-700">7</p>
-                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
-                            <p class="text-xl font-semibold text-blue-500 mt-1">13</p>
-                            <p class="text-xs text-slate-400">políticas</p>
-                        </div>
-                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
-                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">IFEMA</span><span class="text-slate-400">2 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">CODISOIL</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">COFERDROZA</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">FPASQUALMARAGALL</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOIMESE</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">TECNYCONTA</span><span class="text-slate-400">1 pol</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Solo planificado -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 bg-amber-50 border-b border-amber-100">
-                        <p class="font-semibold text-amber-800 text-sm">Ajuste de cómputo — Solo lo planificado en caso de exceso</p>
-                        <p class="text-xs text-amber-500 mt-0.5">No contabiliza tiempo registrado por encima de lo planificado</p>
-                    </div>
-                    <div class="p-4 flex gap-6">
-                        <div class="text-center shrink-0">
-                            <p class="text-3xl font-bold text-amber-600">21</p>
-                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
-                            <p class="text-xl font-semibold text-amber-400 mt-1">41</p>
-                            <p class="text-xs text-slate-400">políticas</p>
-                        </div>
-                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
-                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">COFERDROZA</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">CONCENTROL</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">ELECTRONICAY...</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPORETABET</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">PROFER</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs text-slate-400 italic"><span>+ 15 clientes más</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Deducción tiempo planificado -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 bg-emerald-50 border-b border-emerald-100">
-                        <p class="font-semibold text-emerald-800 text-sm">Deducción automática — Tiempo planificado del tramo</p>
-                        <p class="text-xs text-emerald-500 mt-0.5">Deduce el tiempo planificado si el tramo obligatorio no se registra</p>
-                    </div>
-                    <div class="p-4 flex gap-6">
-                        <div class="text-center shrink-0">
-                            <p class="text-3xl font-bold text-emerald-600">6</p>
-                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
-                            <p class="text-xl font-semibold text-emerald-400 mt-1">11</p>
-                            <p class="text-xs text-slate-400">políticas</p>
-                        </div>
-                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
-                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">PELAYO</span><span class="text-slate-400">6 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">ALZA</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GOBRAVOES</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOIMESE</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPORETABET</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">SENATOR</span><span class="text-slate-400">1 pol</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Deducción mínimo obligatorio -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 bg-rose-50 border-b border-rose-100">
-                        <p class="font-semibold text-rose-800 text-sm">Deducción automática — Tiempo mínimo obligatorio</p>
-                        <p class="text-xs text-rose-500 mt-0.5">Deduce solo el mínimo obligatorio si el tramo no se registra</p>
-                    </div>
-                    <div class="p-4 flex gap-6">
-                        <div class="text-center shrink-0">
-                            <p class="text-3xl font-bold text-rose-600">8</p>
-                            <p class="text-xs text-slate-400 mt-0.5">clientes</p>
-                            <p class="text-xl font-semibold text-rose-400 mt-1">15</p>
-                            <p class="text-xs text-slate-400">políticas</p>
-                        </div>
-                        <div class="flex-1 space-y-1.5 border-l border-slate-100 pl-4">
-                            <div class="flex justify-between text-xs"><span class="font-medium text-slate-700">VOLTAMPER</span><span class="text-slate-400">4 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">IFEMA</span><span class="text-slate-400">3 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">CONCENTROL</span><span class="text-slate-400">2 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GRUPOGRUASFUENTES</span><span class="text-slate-400">2 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GLOVALADVISORY</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">GOBRAVOES</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">SERVIHABITAT</span><span class="text-slate-400">1 pol</span></div>
-                            <div class="flex justify-between text-xs"><span class="text-slate-600">SOFTECA</span><span class="text-slate-400">1 pol</span></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Insight -->
-            <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-4">
-                <p class="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2">💡 Lectura de los datos</p>
-                <p class="text-sm text-white leading-relaxed">Con solo <strong class="text-amber-300">3 semanas desde el lanzamiento</strong>, 27 clientes (11,4%) ya han configurado alguna opción nueva. La más adoptada es <strong class="text-white">"solo lo planificado en caso de exceso"</strong> con 21 clientes y 41 políticas. En deducción automática, los clientes prefieren ligeramente el <strong class="text-white">mínimo obligatorio</strong> (8 clientes) frente al tiempo planificado del tramo (6). <strong class="text-amber-300">PELAYO e IFEMA</strong> son los early adopters más completos, usando varias opciones simultáneamente.</p>
-            </div>
-
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════
-             SUBTAB 3: SALDO DE HORAS
-        ═══════════════════════════════════════════════════════ -->
-        <div id="metricas-saldo-content" class="metricas-tab-content">
-
-            <!-- KPIs -->
-            <div class="grid grid-cols-3 gap-3 mb-4">
-                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
-                    <p class="text-2xl font-bold text-emerald-600">10.036</p>
-                    <p class="text-xs text-emerald-700 font-medium mt-1">Usos totales</p>
-                    <p class="text-xs text-slate-500 mt-0.5">17 feb – 11 mar 2026</p>
-                </div>
-                <div class="bg-teal-50 border border-teal-200 rounded-2xl p-4 text-center">
-                    <p class="text-2xl font-bold text-teal-600">3.688</p>
-                    <p class="text-xs text-teal-700 font-medium mt-1">Usuarios únicos</p>
-                    <p class="text-xs text-slate-500 mt-0.5">17 feb – 11 mar 2026</p>
-                </div>
-                <div class="bg-cyan-50 border border-cyan-200 rounded-2xl p-4 text-center">
-                    <p class="text-2xl font-bold text-cyan-600">153</p>
-                    <p class="text-xs text-cyan-700 font-medium mt-1">Cuentas activas</p>
-                    <p class="text-xs text-slate-500 mt-0.5">17 feb – 11 mar 2026</p>
-                </div>
-            </div>
-
-            <!-- Gráfica evolución -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-4">
-                <div class="flex items-start justify-between mb-3">
-                    <p class="text-xs font-medium text-slate-500">Evolución diaria de usos · 17 feb – 11 mar 2026</p>
-                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full font-medium">23 días en producción</span>
-                </div>
-                <canvas id="saldoChart" height="110"></canvas>
-            </div>
-
-            <!-- Top 10 -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
-                    <p class="font-semibold text-slate-700 text-sm">Top 10 cuentas — Uso de Saldo de horas</p>
-                    <p class="text-xs text-slate-500">17 feb – 11 mar 2026 · Pendo</p>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead><tr class="border-b border-slate-100">
-                            <th class="text-left px-4 py-2.5 text-slate-500 font-medium text-xs">#</th>
-                            <th class="text-left px-3 py-2.5 text-slate-500 font-medium text-xs">Cliente</th>
-                            <th class="text-right px-3 py-2.5 text-slate-500 font-medium text-xs">Usos</th>
-                            <th class="text-right px-3 py-2.5 text-slate-500 font-medium text-xs">Usuarios únicos</th>
-                            <th class="text-right px-3 py-2.5 text-slate-500 font-medium text-xs">Días activos</th>
-                        </tr></thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="bg-emerald-50/50"><td class="px-4 py-2.5 text-slate-500 text-xs">1</td><td class="px-3 py-2.5 font-medium text-slate-800">IFEMA ⭐</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">1.660</td><td class="px-3 py-2.5 text-right text-slate-600">345</td><td class="px-3 py-2.5 text-right text-slate-600">23</td></tr>
-                            <tr><td class="px-4 py-2.5 text-slate-500 text-xs">2</td><td class="px-3 py-2.5 font-medium text-slate-800">CTTI 🆕</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">1.142</td><td class="px-3 py-2.5 text-right text-slate-600">302</td><td class="px-3 py-2.5 text-right text-slate-600">15</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-500 text-xs">3</td><td class="px-3 py-2.5 font-medium text-slate-800">AIREUROPA</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">895</td><td class="px-3 py-2.5 text-right text-slate-600">431</td><td class="px-3 py-2.5 text-right text-slate-600">23</td></tr>
-                            <tr><td class="px-4 py-2.5 text-slate-500 text-xs">4</td><td class="px-3 py-2.5 font-medium text-slate-800">CALAIXDECULTURA</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">359</td><td class="px-3 py-2.5 text-right text-slate-600">101</td><td class="px-3 py-2.5 text-right text-slate-600">19</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-500 text-xs">5</td><td class="px-3 py-2.5 font-medium text-slate-800">GRUPOANAGAN</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">286</td><td class="px-3 py-2.5 text-right text-slate-600">71</td><td class="px-3 py-2.5 text-right text-slate-600">17</td></tr>
-                            <tr><td class="px-4 py-2.5 text-slate-500 text-xs">6</td><td class="px-3 py-2.5 font-medium text-slate-800">VILAVINITECA</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">249</td><td class="px-3 py-2.5 text-right text-slate-600">55</td><td class="px-3 py-2.5 text-right text-slate-600">20</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-500 text-xs">7</td><td class="px-3 py-2.5 font-medium text-slate-800">FPASQUALMARAGALL</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">225</td><td class="px-3 py-2.5 text-right text-slate-600">98</td><td class="px-3 py-2.5 text-right text-slate-600">20</td></tr>
-                            <tr><td class="px-4 py-2.5 text-slate-500 text-xs">8</td><td class="px-3 py-2.5 font-medium text-slate-800">PROAGROUP</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">209</td><td class="px-3 py-2.5 text-right text-slate-600">159</td><td class="px-3 py-2.5 text-right text-slate-600">21</td></tr>
-                            <tr class="bg-slate-50/50"><td class="px-4 py-2.5 text-slate-500 text-xs">9</td><td class="px-3 py-2.5 font-medium text-slate-800">IKOR</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">205</td><td class="px-3 py-2.5 text-right text-slate-600">64</td><td class="px-3 py-2.5 text-right text-slate-600">17</td></tr>
-                            <tr><td class="px-4 py-2.5 text-slate-500 text-xs">10</td><td class="px-3 py-2.5 font-medium text-slate-800">JUANLUISPANTOJAEHIJOS</td><td class="px-3 py-2.5 text-right font-semibold text-emerald-700">203</td><td class="px-3 py-2.5 text-right text-slate-600">71</td><td class="px-3 py-2.5 text-right text-slate-600">18</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="px-4 py-3 bg-emerald-50/50 border-t border-slate-100">
-                    <p class="text-xs text-slate-500">⭐ <strong>IFEMA</strong> lidera con 23 días consecutivos activos. 🆕 <strong>CTTI</strong> entra en el top 2 con solo 15 días activos. <strong>AIREUROPA</strong> tiene el mayor número de usuarios únicos (431).</p>
-                </div>
-            </div>
-
-        </div>
 
     </div>
 </div>
@@ -1583,6 +1249,33 @@
         }
 
         // ─── NAVEGACIÓN MÉTRICAS SUBTABS ─────────────────────────
+        function createVacPaginasChart() {
+            if (window.vacPaginasChartCreated) return;
+            window.vacPaginasChartCreated = true;
+            const ctx = document.getElementById('vacPaginasChart');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mis vac. y aus.', 'Solic. Compañía', 'Solic. Equipo', 'Cal. comp. Equipo', 'Cal. comp. Compañía', 'Saldos Equipo', 'Saldos Compañía'],
+                    datasets: [{
+                        label: 'Eventos de página',
+                        data: [87007, 29516, 24743, 22109, 2450, 1340, 1278],
+                        backgroundColor: ['#7c3aed','#a78bfa','#a78bfa','#c4b5fd','#ddd6fe','#ede9fe','#ede9fe'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
+                        x: { ticks: { font: { size: 11 } } }
+                    }
+                }
+            });
+        }
+
         function showMetricasTab(tab) {
             document.querySelectorAll('.metricas-tab-content').forEach(c => c.classList.remove('active'));
             var content = document.getElementById('metricas-' + tab + '-content');
@@ -1597,12 +1290,8 @@
                 btn.classList.add('active');
                 btn.classList.remove('bg-white','text-slate-600','border','border-slate-200');
             }
-
             setTimeout(function() {
-                if (tab === 'volumen') createRutasChart();
-                if (tab === 'misregistros') { createDiasChart(); createNpsChart(); }
-                if (tab === 'saldo') createSaldoChart();
-                // politicas: no charts needed
+                if (tab === 'vacaciones') createVacPaginasChart();
             }, 50);
         }
 
@@ -1644,6 +1333,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             showPage('home');
+        setTimeout(createVacPaginasChart, 100);
         });
 </script>
 
